@@ -16,12 +16,17 @@ def main():
         for ln in lines:
             num = 0
             ln = ln.replace("\n", "", 1)
+            # initial length of the number 
             targetLen = 12
+
             while(len(str(num)) < 12):
+                # we should search for the highest digit first
                 a = "987654321"
                 for i, val in enumerate(a):
                     pos = findNext(ln, val, targetLen)
                     # print("returned from FindNext: ", pos)
+                    # each time we get the digit for the left most position, we will reduce the targetLen by one and split the actual string from 
+                    # that position to reduce search space and potential duplication error
                     if(pos > -1):
                         num = num * 10 + int(val)
                         targetLen = targetLen - 1
