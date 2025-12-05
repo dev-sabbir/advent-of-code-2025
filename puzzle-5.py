@@ -1,12 +1,12 @@
 def process(ln):
-    rs, re = ln.split("-")
-    return((int(rs), int(re)))
+    range_start, range_end = ln.split("-")
+    return((int(range_start), int(range_end)))
 
 def main():
     filepath = "input.txt"
     with open(filepath, 'r') as file:
         lines = file.readlines()
-        n = 0
+        result = 0
         ranges = []
         ingredients = []
         
@@ -25,9 +25,9 @@ def main():
         print("length of ranges:", len(ranges))
         
         for ingId in ingredients:
-            for (rs, re) in ranges:
-                if(ingId >= rs and ingId <= re):
-                    n = n + 1
+            for (range_start, range_end) in ranges:
+                if(ingId >= range_start and ingId <= range_end):
+                    result = result + 1
                     break
-        print(n)    
+        print(result)    
 main()

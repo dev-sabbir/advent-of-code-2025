@@ -1,6 +1,6 @@
 def process(ln):
-    rs, re = ln.split("-")
-    return((int(rs), int(re)))
+    range_start, range_end = ln.split("-")
+    return((int(range_start), int(range_end)))
 
 def main():
     filepath = "input.txt"
@@ -17,23 +17,23 @@ def main():
         ranges.sort()
 
         for i in range(len(ranges)):
-            rs1, re1 = ranges[i]
-            if(rs1 == -1 and re1 == -1):
+            range_start1, range_end1 = ranges[i]
+            if(range_start1 == -1 and range_end1 == -1):
                 continue
-            n = n + re1 - rs1 + 1
+            n = n + range_end1 - range_start1 + 1
 
             for j in range(i + 1, len(ranges)):
-                rs2, re2 = ranges[j]
-                if(rs2 == -1 and re2 == -1):
+                range_start2, range_end2 = ranges[j]
+                if(range_start2 == -1 and range_end2 == -1):
                     continue
                 # the second range start within first range but ends outside of first range
-                if( rs2 >= rs1 and rs2 <= re1 and re2 > re1):
-                    ranges[j] = (re1 + 1, re2)
+                if( range_start2 >= range_start1 and range_start2 <= range_end1 and range_end2 > range_end1):
+                    ranges[j] = (range_end1 + 1, range_end2)
                 # the second range is completely within the first range
-                elif(rs2 >= rs1 and rs2 <= re1 and re2 <= re1):
+                elif(range_start2 >= range_start1 and range_start2 <= range_end1 and range_end2 <= range_end1):
                     ranges[j] = (-1, -1)
                 # the second range is completely outside and before the first range
-                elif(rs2 > rs1 and rs2 > re1):
+                elif(range_start2 > range_start1 and range_start2 > range_end1):
                     continue        
         
         print(n)    
