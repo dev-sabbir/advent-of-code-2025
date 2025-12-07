@@ -39,7 +39,7 @@ def main():
                 return 1
 
             rs = splitterRowBelow(r, c)
-            # we are outside of the grid - vertically
+            # we are outside of the grid - vertically or in this column there is no splitter anymore
             if rs is None:
                 memo[key] = 1
                 return 1
