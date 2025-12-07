@@ -33,12 +33,13 @@ def main():
             if key in memo:
                 return memo[key]
 
-            #we are out of the grid
+            # we are out of the grid - horizontally
             if c < 0 or c >= W:
                 memo[key] = 1
                 return 1
 
             rs = splitterRowBelow(r, c)
+            # we are outside of the grid - vertically
             if rs is None:
                 memo[key] = 1
                 return 1
